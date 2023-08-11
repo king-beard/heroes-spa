@@ -1,9 +1,10 @@
 import { Fragment } from "react"
+import { AppRouter } from "./router/AppRouter"
 
 export const HeroesApp = () => {
   return (
     <Fragment>
-      <h1>Heores App</h1>
+      <AppRouter/>
     </Fragment>
   )
 }
