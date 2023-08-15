@@ -1,5 +1,5 @@
 import { Fragment } from "react"
-import { HeroesList } from "../components"
+import { HeroList } from "../components"
 
 export const MarvelPage = () => {
   return (
@@ -7,7 +7,7 @@ export const MarvelPage = () => {
       <h1>Marvel Page</h1>
       <hr />
 
-      <HeroesList publisher="Marvel Comics"/>
+      <HeroList publisher="Marvel Comics"/>
     </Fragment>
   )
 }
