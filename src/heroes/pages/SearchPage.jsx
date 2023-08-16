@@ -1,7 +1,25 @@
 import { Fragment } from "react"
+import { useLocation, useNavigate } from "react-router-dom"
+import queryString  from 'query-string'
 import { HeroCard } from "../components"
+import { useForm } from "../../hooks/useForm"
 
 export const SearchPage = () => {
+
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const { q = '' } = queryString.parse( location.search )
+
+  const { searchText, onInputChange } = useForm({ searchText : '' })
+
+  const onSearchSubmit = ( event ) => {
+    event.preventDefault()
+    if( searchText.trim().length <= 1 ) return
+
+    navigate(`?q=${ searchText }`)
+  }
+
   return (
     <Fragment>
       <h1>Search Page</h1>
@@ -11,13 +29,15 @@ export const SearchPage = () => {
         <div className="col-5">
           <h4>Searching</h4>
           <hr />
-          <form>
+          <form onSubmit={ onSearchSubmit }>
             <input 
               type="text"
               className="form-control"
               placeholder="Search a hero"
               name="searchText"
               autoComplete="off"
+              value={ searchText }
+              onChange={ onInputChange }
             />
           </form>
           <button className="btn btn-outline-danger mt-1">Search</button>
@@ -30,7 +50,7 @@ export const SearchPage = () => {
             Search a hero
           </div>
           <div className="alert alert-danger">
-            No hero with <b>ABC</b>
+            No hero with <b>{ q }</b>
           </div>
 
           {/* <HeroCard /> */}
