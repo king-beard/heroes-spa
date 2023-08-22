@@ -9,7 +9,8 @@ export const LoginPage = () => {
 
   const onLogin = () => {
     login('King Beard')
-    navigate("/marvel", { replace : true })
+    const lastPath = localStorage.getItem('lastPath') || '/'
+    navigate(lastPath, { replace : true })
   }
 
   return (
